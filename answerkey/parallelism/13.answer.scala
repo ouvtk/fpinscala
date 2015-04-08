@@ -11,7 +11,7 @@ def flatMap[A,B](p: Par[A])(choices: A => Par[B]): Par[B] =
     run(es)(choices(k))
   }
 
-def choiceViaFlatMap[A](p: Par[Boolean])(f: Par[A], t: Par[A]): Par[A] =
+def choiceViaFlatMap[A](p: Par[Boolean])(t: Par[A], f: Par[A]): Par[A] =
   flatMap(p)(b => if (b) t else f)
 
 def choiceNViaFlatMap[A](p: Par[Int])(choices: List[Par[A]]): Par[A] =
